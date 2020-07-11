@@ -14,8 +14,17 @@ plugins {
     id 'application'
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs "src/main/resources"
+        }
+    }
+}
+
 // Define the main class for the application
 mainClassName = 'App'
+
 
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
@@ -31,6 +40,9 @@ dependencies {
     compile 'org.projectlombok:lombok:1.18.12'
 
     compile 'org.apache.commons:commons-collections4:4.4'
+
+    compile 'org.slf4j:slf4j-api:1.7.13'
+    implementation 'org.slf4j:slf4j-log4j12:1.7.13'
 
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
 }

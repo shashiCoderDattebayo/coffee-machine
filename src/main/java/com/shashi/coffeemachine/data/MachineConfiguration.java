@@ -10,15 +10,15 @@ import java.util.Map;
 import static com.google.common.base.Preconditions.checkArgument;
 
 @Getter
-public class Machine {
+public class MachineConfiguration {
     private final int outlets;
     private final Map<String, Integer> ingredientsStock;
     private final Map<String, Map<String, Integer>> beverages;
 
     @JsonCreator
-    public Machine(@JsonProperty("outlets") Map<String, Integer> outlets,
-                   @JsonProperty("total_items_quantity") Map<String, Integer> ingredientsStock,
-                   @JsonProperty("beverages") Map<String, Map<String, Integer>> beverages) {
+    public MachineConfiguration(@JsonProperty("outlets") Map<String, Integer> outlets,
+                                @JsonProperty("total_items_quantity") Map<String, Integer> ingredientsStock,
+                                @JsonProperty("beverages") Map<String, Map<String, Integer>> beverages) {
         validateIngredients(ingredientsStock, beverages);
         this.outlets = validateAndGetOutlets(outlets);
         this.ingredientsStock = ingredientsStock;

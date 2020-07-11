@@ -24,7 +24,7 @@ public class Outlet implements BeverageServable {
 
     @Override
     public void serveBeverage(Beverage beverage) {
-        System.out.println(beverage.getName() + " is being served in Outlet- " + this.getId() + ".");
+        System.out.println("Outlet-" + this.getId() + " : " + beverage.getName() + " is being served.");
         try {
             Thread.sleep(beverage.getPreparationTime());
         } catch (InterruptedException e) {
