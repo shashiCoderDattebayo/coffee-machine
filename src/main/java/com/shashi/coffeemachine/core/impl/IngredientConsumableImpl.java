@@ -8,18 +8,22 @@ import com.shashi.coffeemachine.models.BeverageIngredient;
 import com.shashi.coffeemachine.models.IngredientStock;
 import com.shashi.coffeemachine.models.Quantity;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
 
-public class IngredientConsumableImpl extends Observable implements IngredientConsumable  {
+public class IngredientConsumableImpl implements IngredientConsumable  {
     private final Map<String, IngredientStock> ingredientStocksMap;
+    private PropertyChangeSupport support;
 
-    public IngredientConsumableImpl(Map<String, Integer> ingredientStocksMap, Observer ingredientStockObserver) {
+    public IngredientConsumableImpl(Map<String, Integer> ingredientStocksMap, PropertyChangeListener ingredientStockObserver) {
         this.ingredientStocksMap = initIngredientStocks(ingredientStocksMap);
-        this.addObserver(ingredientStockObserver);
+        support = new PropertyChangeSupport(this);
+        support.addPropertyChangeListener(ingredientStockObserver);
     }
 
     @Override
@@ -47,7 +51,7 @@ public class IngredientConsumableImpl extends Observable implements IngredientCo
                 throw new RuntimeException();
             }
         }
-        notifyObservers(ingredientStocksMap);
+        support.firePropertyChange("ingredientStocksMap", null, ingredientStocksMap);
     }
 
     private Map<String, IngredientStock> initIngredientStocks(Map<String, Integer> ingredientStocks) {

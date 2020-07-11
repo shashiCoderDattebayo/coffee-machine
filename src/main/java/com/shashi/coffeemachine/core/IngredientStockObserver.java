@@ -4,20 +4,20 @@ import com.shashi.coffeemachine.models.IngredientStock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
 
-public class IngredientStockObserver implements Observer {
+public class IngredientStockObserver implements PropertyChangeListener {
     private static final Logger logger = LoggerFactory.getLogger(IngredientStockObserver.class);
 
     public IngredientStockObserver() {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
+    public void propertyChange(PropertyChangeEvent evt) {
         int base_quantity = 5;
-        Map<String, IngredientStock> ingredientStocksMap = (Map<String, IngredientStock>) arg;
+        Map<String, IngredientStock> ingredientStocksMap = (Map<String, IngredientStock>) evt.getNewValue();
         for (IngredientStock ingredientStock : ingredientStocksMap.values()) {
             System.out.println("Quantity: " + ingredientStock.getName() + " - " + ingredientStock.getQuantity().getStdUnits());
             if (ingredientStock.getQuantity().getStdUnits() < base_quantity) {

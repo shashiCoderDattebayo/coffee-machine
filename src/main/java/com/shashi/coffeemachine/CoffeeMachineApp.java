@@ -20,6 +20,7 @@ import com.shashi.coffeemachine.models.Outlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observer;
@@ -43,7 +44,7 @@ public class CoffeeMachineApp {
     public CoffeeMachineApp(MachineConfiguration machineConfiguration) {
         int nThreads = machineConfiguration.getOutlets();
         Map<Integer, String> bevereageOptionsMap = constructBeverageOptionsMap(machineConfiguration);
-        Observer ingredientStockObserver = new IngredientStockObserver();
+        PropertyChangeListener ingredientStockObserver = new IngredientStockObserver();
         IngredientConsumable ingredientConsumable = new IngredientConsumableImpl(machineConfiguration.getIngredientsStock(), ingredientStockObserver);
         this.outletConsumable = new OutletConsumableImpl(machineConfiguration.getOutlets());
         this.beverageRequestable = new BeverageRequestableImpl(machineConfiguration.getBeverages(), ingredientConsumable);
