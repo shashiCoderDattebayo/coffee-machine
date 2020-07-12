@@ -7,6 +7,7 @@ import com.shashi.coffeemachine.exceptions.InsufficientQuantityException;
 import com.shashi.coffeemachine.models.BeverageIngredient;
 import com.shashi.coffeemachine.models.IngredientStock;
 import com.shashi.coffeemachine.models.Quantity;
+import com.shashi.coffeemachine.models.RefillRequest;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -50,6 +51,22 @@ public class IngredientConsumableImpl implements IngredientConsumable  {
             }
         }
         support.firePropertyChange("ingredientStocksMap", null, ingredientStocksMap);
+    }
+
+    @Override
+    public synchronized void refillIngredient(RefillRequest refillRequest) {
+        IngredientStock ingredientStock = ingredientStocksMap.get(refillRequest.getIngredientName());
+        if (ingredientStock != null) {
+            Quantity quantity = new Quantity((-1) * refillRequest.getQuantity(), Quantity.DisplayType.ML);
+            try {
+                ingredientStock.consumeQuantity(quantity);
+            } catch (InsufficientQuantityException e) {
+                throw new RuntimeException("InsufficientQuantityException shouldn't occur on refill.");
+            }
+        } else {
+            Quantity quantity = new Quantity(refillRequest.getQuantity(), Quantity.DisplayType.ML);
+            ingredientStocksMap.put(refillRequest.getIngredientName(), new IngredientStock(refillRequest.getIngredientName(), quantity));
+        }
     }
 
     private Map<String, IngredientStock> initIngredientStocks(Map<String, Integer> ingredientStocks) {

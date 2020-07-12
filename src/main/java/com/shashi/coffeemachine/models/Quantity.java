@@ -34,7 +34,7 @@ public class Quantity implements Comparable<Quantity> {
     }
 
     public synchronized void consumeQuantity(Quantity that) throws InsufficientQuantityException {
-        if (this.getStdUnits() > that.getStdUnits()) {
+        if (this.getStdUnits() >= that.getStdUnits()) {
             this.stdUnits = (this.getStdUnits() - that.getStdUnits());
         } else {
             throw new InsufficientQuantityException();
