@@ -59,6 +59,8 @@ public class CoffeeMachineApp {
                     logger.debug("Launching thread for beverage {} on outlet {}.", finalBeverageRequest.getBeverageName(), finalOutlet.getId());
                     beverageRequestable.serveBeverage(finalBeverageRequest, finalOutlet);
                 }  catch (InsufficientIngredientException e) {
+                    System.out.println("Beverage request - " + finalBeverageRequest.getBeverageName() + " on outlet " + finalOutlet.getId() + " could not be served due to insufficient ingredient " +
+                            "quantity.");
                     logger.debug("Beverage request - {} on outlet {} could not be served due to insufficient ingredient quantity.", finalBeverageRequest.getBeverageName(), finalOutlet.getId());
                 }
             });
