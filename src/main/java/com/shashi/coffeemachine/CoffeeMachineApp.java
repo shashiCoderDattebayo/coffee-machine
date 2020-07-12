@@ -48,7 +48,7 @@ public class CoffeeMachineApp {
         this.beverageRequestable = new BeverageRequestableImpl(machineConfiguration.getBeverages(), ingredientConsumable);
         this.threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(nThreads);
         this.optionsDisplayable = new BeverageOptionsDisplayableImpl(beverageOptionsMap);
-        this.optionsReadable = new OptionsReadableImpl(machineConfiguration.getOutlets());
+        this.optionsReadable = new OptionsReadableImpl(machineConfiguration.getBeverages().size());
     }
 
     void start() {
