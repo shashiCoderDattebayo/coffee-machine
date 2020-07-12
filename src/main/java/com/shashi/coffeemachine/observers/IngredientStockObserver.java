@@ -17,7 +17,7 @@ public class IngredientStockObserver implements PropertyChangeListener {
     @SuppressWarnings("unchecked")
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        int base_quantity = 300;
+        int base_quantity = 10;
         Map<String, IngredientStock> ingredientStocksMap = (Map<String, IngredientStock>) evt.getNewValue();
         StringBuilder stringBuilder = new StringBuilder().append("Ingredient Stocks: \n");
         for (IngredientStock ingredientStock : ingredientStocksMap.values()) {
