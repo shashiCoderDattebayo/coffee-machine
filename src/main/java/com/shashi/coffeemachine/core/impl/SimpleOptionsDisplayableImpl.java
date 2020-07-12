@@ -14,7 +14,7 @@ public class SimpleOptionsDisplayableImpl implements OptionsDisplayable {
     @Override
     public void displayOptions() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Ready to serve Coffee. Please enter an option No.\n");
+        stringBuilder.append("Ready to serve Beverage. Please enter an option No.\n");
         for (int i = 1; i <= beverageOptionsMap.size(); i++) {
             stringBuilder.append(i).append(". ").append(beverageOptionsMap.get(i)).append("\n");
         }
