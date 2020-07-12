@@ -41,7 +41,7 @@ public class Outlet implements BeverageServable {
         }
     }
 
-    private synchronized void releaseLock() {
+    public synchronized void releaseLock() {
         if (State.PROCESSING.equals(this.getState())) {
             this.setState(State.FREE);
         }

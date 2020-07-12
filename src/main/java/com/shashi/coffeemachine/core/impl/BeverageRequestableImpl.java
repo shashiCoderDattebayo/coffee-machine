@@ -31,7 +31,12 @@ public class BeverageRequestableImpl implements BeverageRequestable {
         checkNotNull(beverageRequest, "beverageRequest cannot be null.");
         checkArgument(beveragesMap.containsKey(beverageRequest.getBeverageName()), "The requested beverage name is not configured.");
         Beverage beverage = beveragesMap.get(beverageRequest.getBeverageName());
-        ingredientConsumable.consumeIngredients(beverage.getBeverageIngredients());
+        try {
+            ingredientConsumable.consumeIngredients(beverage.getBeverageIngredients());
+        } catch (InsufficientIngredientException e) {
+            outlet.releaseLock();
+            throw e;
+        }
         outlet.serveBeverage(beverage);
     }
 
