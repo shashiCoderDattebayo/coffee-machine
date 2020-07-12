@@ -9,4 +9,5 @@ import java.util.Set;
 public interface IngredientConsumable {
     void consumeIngredients(Set<BeverageIngredient> beverageIngredients) throws InsufficientIngredientException;
     void refillIngredient(RefillRequest refillRequest);
+    Set<String> getIngredients();
 }

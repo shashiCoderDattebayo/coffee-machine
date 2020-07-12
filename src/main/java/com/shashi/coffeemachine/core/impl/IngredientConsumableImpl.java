@@ -69,6 +69,11 @@ public class IngredientConsumableImpl implements IngredientConsumable  {
         }
     }
 
+    @Override
+    public Set<String> getIngredients() {
+        return ingredientStocksMap.keySet();
+    }
+
     private Map<String, IngredientStock> initIngredientStocks(Map<String, Integer> ingredientStocks) {
         Map<String, IngredientStock> ingredientStocksMap = new HashMap<>();
         for (Map.Entry<String, Integer> entry : ingredientStocks.entrySet()) {

@@ -4,10 +4,10 @@ import com.shashi.coffeemachine.core.OptionsDisplayable;
 
 import java.util.Map;
 
-public class SimpleOptionsDisplayableImpl implements OptionsDisplayable {
+public class BeverageOptionsDisplayableImpl implements OptionsDisplayable {
     private final Map<Integer, String> beverageOptionsMap;
 
-    public SimpleOptionsDisplayableImpl(Map<Integer, String> beverageOptionsMap) {
+    public BeverageOptionsDisplayableImpl(Map<Integer, String> beverageOptionsMap) {
         this.beverageOptionsMap = beverageOptionsMap;
     }
 
@@ -15,6 +15,7 @@ public class SimpleOptionsDisplayableImpl implements OptionsDisplayable {
     public void displayOptions() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Ready to serve Beverage. Please enter an option No.\n");
+        stringBuilder.append(0).append(". ").append("Refill").append("\n");
         for (int i = 1; i <= beverageOptionsMap.size(); i++) {
             stringBuilder.append(i).append(". ").append(beverageOptionsMap.get(i)).append("\n");
         }

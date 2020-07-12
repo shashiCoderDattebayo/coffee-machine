@@ -2,28 +2,24 @@ package com.shashi.coffeemachine.core.impl;
 
 import com.shashi.coffeemachine.core.OptionsReadable;
 import com.shashi.coffeemachine.exceptions.InvalidOptionException;
-import com.shashi.coffeemachine.models.BeverageRequest;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class OptionsReadableImpl implements OptionsReadable {
-    private final Map<Integer, String> beverageOptionsMap;
+    private final int beverageOptions;
 
-    public OptionsReadableImpl(Map<Integer, String> beverageOptionsMap) {
-        this.beverageOptionsMap = beverageOptionsMap;
+    public OptionsReadableImpl(int beverageOptions) {
+        this.beverageOptions = beverageOptions;
     }
 
     @Override
-    public BeverageRequest readOptions() throws InvalidOptionException {
+    public int readOptions() throws InvalidOptionException {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter an Option: ");
         int option = sc.nextInt();
-        if ((option < 1) || (option > beverageOptionsMap.size())) {
+        if ((option < 0) || (option > beverageOptions)) {
             throw new InvalidOptionException();
         }
-        String beverageName = beverageOptionsMap.get(option);
-        System.out.println("You have selected: " + beverageName);
-        return new BeverageRequest(beverageName);
+        return option;
     }
 }
