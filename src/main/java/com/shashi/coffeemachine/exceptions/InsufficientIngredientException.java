@@ -16,7 +16,7 @@ public class InsufficientIngredientException extends Exception {
     public String getMessage() {
         StringBuilder stringBuilder = new StringBuilder();
         for (BeverageIngredient insuffiecientBeverageIngredient : insuffiecientBeverageIngredients) {
-            stringBuilder.append("Insufficient Ingredient:").append(insuffiecientBeverageIngredient.getName()).append(" - ").append(insuffiecientBeverageIngredient.getQuantity()).append("\n");
+            stringBuilder.append("Insufficient Ingredient:").append(insuffiecientBeverageIngredient.getName()).append(" - ").append(insuffiecientBeverageIngredient.getQuantity().getStdUnits()).append("\n");
         }
         return stringBuilder.toString();
     }
