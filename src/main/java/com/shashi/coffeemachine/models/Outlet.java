@@ -1,6 +1,5 @@
 package com.shashi.coffeemachine.models;
 
-import com.shashi.coffeemachine.core.BeverageServable;
 import com.shashi.coffeemachine.exceptions.BusyOutletException;
 import lombok.Getter;
 

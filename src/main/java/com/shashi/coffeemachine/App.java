@@ -2,7 +2,7 @@ package com.shashi.coffeemachine;
 
 import com.shashi.coffeemachine.data.AppConfiguration;
 import com.shashi.coffeemachine.data.ConfigurationReadable;
-import com.shashi.coffeemachine.data.JsonConfigurationReadableImpl;
+import com.shashi.coffeemachine.data.impl.JsonConfigurationReadableImpl;
 import com.shashi.coffeemachine.data.MachineConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,10 +12,11 @@ import org.slf4j.LoggerFactory;
  */
 public class App {
     private static final Logger logger = LoggerFactory.getLogger(App.class);
+    private static final String configurationFileName = "sampleData.json";
 
     public static void main(String[] args) {
-        logger.debug("This is my first log4j's statement.");
-        ConfigurationReadable configurationReadable = new JsonConfigurationReadableImpl();
+        logger.debug("Starting Main method.");
+        ConfigurationReadable configurationReadable = new JsonConfigurationReadableImpl(configurationFileName);
         AppConfiguration appConfiguration = configurationReadable.getConfiguration();
         MachineConfiguration machineConfiguration = appConfiguration.getMachineConfiguration();
         CoffeeMachineApp app = new CoffeeMachineApp(machineConfiguration);

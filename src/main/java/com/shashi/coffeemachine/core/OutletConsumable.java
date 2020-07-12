@@ -4,5 +4,7 @@ import com.shashi.coffeemachine.exceptions.BusyOutletException;
 import com.shashi.coffeemachine.models.Outlet;
 
 public interface OutletConsumable {
-    public Outlet acquireLockAndGetFreeOutlet() throws BusyOutletException;
+    Outlet acquireLockAndGetFreeOutlet() throws BusyOutletException;
+
+    Outlet getWaitingFreeOutlet();
 }

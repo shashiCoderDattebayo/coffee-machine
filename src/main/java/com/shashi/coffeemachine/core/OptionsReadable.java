@@ -4,5 +4,5 @@ import com.shashi.coffeemachine.exceptions.InvalidOptionException;
 import com.shashi.coffeemachine.models.BeverageRequest;
 
 public interface OptionsReadable {
-    public BeverageRequest readOptions() throws InvalidOptionException;
+    BeverageRequest readOptions() throws InvalidOptionException;
 }

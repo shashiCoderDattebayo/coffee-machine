@@ -1,5 +1,6 @@
-package com.shashi.coffeemachine.core;
+package com.shashi.coffeemachine.core.impl;
 
+import com.shashi.coffeemachine.core.OptionsReadable;
 import com.shashi.coffeemachine.exceptions.InvalidOptionException;
 import com.shashi.coffeemachine.models.BeverageRequest;
 

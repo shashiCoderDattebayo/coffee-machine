@@ -1,4 +1,4 @@
-package com.shashi.coffeemachine.core;
+package com.shashi.coffeemachine.observers;
 
 import com.shashi.coffeemachine.models.IngredientStock;
 import org.slf4j.Logger;
@@ -14,15 +14,18 @@ public class IngredientStockObserver implements PropertyChangeListener {
     public IngredientStockObserver() {
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         int base_quantity = 5;
         Map<String, IngredientStock> ingredientStocksMap = (Map<String, IngredientStock>) evt.getNewValue();
+        StringBuilder stringBuilder = new StringBuilder().append("Ingredient Stocks: \n");
         for (IngredientStock ingredientStock : ingredientStocksMap.values()) {
-            System.out.println("Quantity: " + ingredientStock.getName() + " - " + ingredientStock.getQuantity().getStdUnits());
+            stringBuilder.append(ingredientStock.getName()).append(" - ").append(ingredientStock.getQuantity().getStdUnits()).append("\n");
             if (ingredientStock.getQuantity().getStdUnits() < base_quantity) {
                 System.out.println(ingredientStock.getName() + " is running low.");
             }
         }
+        logger.debug(stringBuilder.toString());
     }
 }
