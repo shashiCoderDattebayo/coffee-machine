@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 
@@ -26,9 +27,11 @@ public class JsonConfigurationReadableImpl implements ConfigurationReadable {
             URL resource = JsonConfigurationReadableImpl.class.getClassLoader().getResource(fileName);
             Preconditions.checkNotNull(resource, "Couldn't find the configuration file.");
             File file = new File(resource.getFile());
-            appConfiguration = mapper.readValue(file, AppConfiguration.class);
+            logger.debug(file.getAbsolutePath());
+            FileInputStream src = new FileInputStream(fileName);
+            appConfiguration = mapper.readValue(src, AppConfiguration.class);
         } catch (IOException e) {
-            throw new IllegalArgumentException("Couldn't parse the given config file into internal app configuration.");
+            throw new IllegalArgumentException("Couldn't parse the given config file into internal app configuration.", e);
         }
         logger.debug("Parsed the configuration file values.");
         return appConfiguration;

@@ -29,6 +29,7 @@ public class Outlet implements BeverageServable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        System.out.println("Outlet-" + this.getId() + " : " + beverage.getName() + " got served.");
         this.releaseLock();
     }
 

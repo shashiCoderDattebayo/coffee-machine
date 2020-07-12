@@ -62,6 +62,11 @@ public class CoffeeMachineApp {
                     logger.debug("Beverage request - {} on outlet {} could not be served due to insufficient ingredient quantity.", finalBeverageRequest.getBeverageName(), finalOutlet.getId());
                 }
             });
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                logger.debug("Thread sleep waiting for options got interrupted", e);
+            }
         }
     }
 
