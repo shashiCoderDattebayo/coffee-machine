@@ -17,12 +17,12 @@ public class IngredientStockObserver implements PropertyChangeListener {
     @SuppressWarnings("unchecked")
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        int base_quantity = 5;
+        int base_quantity = 300;
         Map<String, IngredientStock> ingredientStocksMap = (Map<String, IngredientStock>) evt.getNewValue();
         StringBuilder stringBuilder = new StringBuilder().append("Ingredient Stocks: \n");
         for (IngredientStock ingredientStock : ingredientStocksMap.values()) {
             stringBuilder.append(ingredientStock.getName()).append(" - ").append(ingredientStock.getQuantity().getStdUnits()).append("\n");
-            if (ingredientStock.getQuantity().getStdUnits() < base_quantity) {
+            if (ingredientStock.getQuantity().getStdUnits() <= base_quantity) {
                 System.out.println(ingredientStock.getName() + " is running low.");
             }
         }
